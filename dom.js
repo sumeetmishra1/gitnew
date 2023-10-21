@@ -12,3 +12,12 @@ header.style.borderBlock='solid 3px #000';
 var items =document.getElementById('title');
 items.style.fontWeight='bold';
 items.style.color='green';
+var items =document.getElementsByClassName('list-group-item');
+console.log(items[1]);
+items[1].textContent ='hello';
+//
+for (let index = 0; index < items.length; index++) {
+    items[index].style.backgroundColor='yellow';
+    items[index].style.fontWeight='bold';
+}
+items[2].style.backgroundColor='green';
