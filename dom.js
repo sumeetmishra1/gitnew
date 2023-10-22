@@ -68,20 +68,52 @@
 // console.log(itemList.previousElementSibling);
 // itemList.previousElementSibling.style.fontWeight='bold';
 //create ddiv
-var newdiv=document.createElement('div');
-newdiv.className='hello';
-newdiv.id='hello1';
+//var newdiv=document.createElement('div');
+//newdiv.className='hello';
+//newdiv.id='hello1';
 //newdiv.textContent='helloooooooooooo';
-var newdivtext=document.createTextNode('Hello word');
-newdiv.appendChild(newdivtext);
-console.log(newdiv);
-var contain= document.querySelector('header .container');
-var h1=document.querySelector('#header-title');
-contain.insertBefore(newdiv, h1);
-newdiv.style.fontSize='30px';
-var newdiv2=document.createElement('div');
-var newdivtext2=document.createTextNode('Hello word');
-newdiv2.appendChild(newdivtext2);
-var list= document.querySelector('#items');
-var l1=document.querySelector('.list-group-item');
-list.insertAdjacentElement('afterbegin',newdiv2);
+// var newdivtext=document.createTextNode('Hello word');
+// newdiv.appendChild(newdivtext);
+// newdiv.setAttribute('title','test')
+// console.log(newdiv);
+// var contain= document.querySelector('header .container');
+// var h1=document.querySelector('#header-title');
+// contain.insertBefore(newdiv, h1);
+// newdiv.style.fontSize='30px';
+// var newdiv2=document.createElement('div');
+// var newdivtext2=document.createTextNode('Hello word');
+// newdiv2.appendChild(newdivtext2);
+// var list= document.querySelector('#items');
+// var l1=document.querySelector('.list-group-item');
+// list.insertAdjacentElement('afterbegin',newdiv2);
+var form =document.querySelector('#addForm');
+var itemList=document.querySelector('#items');
+itemList.addEventListener('click',deleteItem);
+form.addEventListener('submit',addItem);
+function addItem(e){
+    e.preventDefault();
+    //get input
+    var input=document.querySelector('#item');
+    var delbutton=document.createElement('button');
+    delbutton.className='btn btn-danger btn-sm float-right delete';
+    delbutton.appendChild(document.createTextNode('X'));
+    var editbutton=document.createElement('button');
+    editbutton.className='btn btn-success float-right mr-2';
+    editbutton.appendChild(document.createTextNode('Edit'));
+    var li=document.createElement('li');
+    li.className='list-group-item';
+    var text=document.createTextNode(input.value);
+    li.appendChild(text);
+    li.appendChild(delbutton);
+    li.appendChild(editbutton);
+   itemList.appendChild(li);
+
+}
+function deleteItem(e){
+    if(e.target.classList.contains('delete')){
+        if(confirm('Are You Sure?')){
+    var item=e.target.parentElement;
+    itemList.removeChild(item);
+        }
+    }
+}
