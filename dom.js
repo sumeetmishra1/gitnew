@@ -88,6 +88,8 @@
 // list.insertAdjacentElement('afterbegin',newdiv2);
 var form =document.querySelector('#addForm');
 var itemList=document.querySelector('#items');
+var filter=document.getElementById('filter');
+filter.addEventListener('keyup',filterItem)
 itemList.addEventListener('click',deleteItem);
 form.addEventListener('submit',addItem);
 function addItem(e){
@@ -116,4 +118,17 @@ function deleteItem(e){
     itemList.removeChild(item);
         }
     }
+}
+function filterItem(e){
+    var text=e.target.value.toLowerCase();
+    var items=itemList.getElementsByTagName('li');
+    Array.from(items).forEach(function(item){
+        var itemName=item.firstChild.textContent;
+        if(itemName.toLowerCase().indexOf(text)!=-1){
+            item.style.display='block';
+        }
+        else{
+            item.style.display='none';
+        }
+    })
 }
